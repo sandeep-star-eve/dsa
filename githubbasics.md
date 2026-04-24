@@ -31,6 +31,9 @@ Or download from [git-scm.com](https://git-scm.com)
 ---
 
 ## Step 4: Push Your Code from Laptop
+git add .
+git commit -m "Add stackop.c"
+git push
 
 Open terminal in your `c:\dsa` folder:
 
