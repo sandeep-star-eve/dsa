@@ -28,6 +28,9 @@
 *.so.*
 *.dylib
 
+# Personal private folder (not pushed to remote)
+personal/
+
 # Executables
 *.exe
 *.out

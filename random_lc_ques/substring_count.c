@@ -1,41 +1,44 @@
-//count number of substrings without repeating characters
-//Input: s = "abcabcbb"
-//Output: 3 abc,abc,bb
-//Input: s = "bbbbb"
-//Output: 1 b
+
+
+
+
+
 #include <stdio.h>
 #include <string.h>
 
-#include <stdio.h>
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
 
-int countSubstrings(char *s) {
-    int count = 0;
-    int seen[256] = {0}; 
-    int i = 0;
-    
-    while ( s[i] != '\0') {
-        if (seen[(unsigned char)s[i]] == 1) {
-            count++; 
-            
-            // 2. Empty the bucket for the next chunk
-            for (int j = 0; j < 256; j++) 
-            seen[j] = 0;
+int lengthOfLongestSubstring(char *s) {
+    // Array to store the last index of each character (initialized to -1)
+    int last_seen[256];
+    for (int i = 0; i < 256; i++) 
+    last_seen[i] = -1;
+
+    int max_len = 0;
+    int left = 0;
+    int n = strlen(s);
+
+    for (int right = 0; right < n; right++) {
+        // Use our special syntax to find if we've seen this char before
+        unsigned char current_char = (unsigned char)s[right];
+
+        // If the character was seen inside the current window, move 'left'
+        if (last_seen[current_char] >= left) {
+            left = last_seen[current_char] + 1;
         }
-        
-        // 3. Put the current letter in the bucket
-        seen[(unsigned char)s[i]] = 1;
-        i++;
+
+        // Update the last seen position of the character
+        last_seen[current_char] = right;
+
+        // Calculate current window length and update max
+        max_len = MAX(max_len, right - left + 1);
     }
 
-    // 4. If there's anything left in the bucket at the end, count it
-    return (s[0] == '\0') ? 0 : count ;
+    return max_len;
 }
 
 int main() {
-    char s1[] = "abcabcbb";
-    char s2[] = "bbbbba";
-    
-    printf("Input: %s -> Output: %d\n", s1, countSubstrings(s1));
-    printf("Input: %s -> Output: %d\n", s2, countSubstrings(s2)); 
+    char *s = "abcabcbbsdkhf";
+    printf("Longest substring length: %d\n", lengthOfLongestSubstring(s));
     return 0;
 }
