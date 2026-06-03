@@ -3,7 +3,7 @@
  * STM32 Matrix Multiplication - Beginner Friendly Example
  * ============================================================================
  *
- * Target: Any STM32 with ARM Cortex-M core (F0, F1, F4, H7, etc.)
+ * Target: Any STM32 with ARM Cortex-M4 core 
  * IDE: STM32CubeIDE
  * Debug Interface: SWD + SWO/ITM (optional for printf)
  *
